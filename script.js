@@ -1,149 +1,104 @@
 // 1
-// const min = prompt('введи min');
-// const max = prompt('введи max');
-// let sum = 0;
+function foo(num1, num2) {
+    if (num1 < num2) {
+        return -1;
+    } else if (num1 > num2) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
 
-// for (let index = min; index < max; index++) {
-//     sum = sum + index;
-// }
+// 2
+function calcFactorial(num) {
+    if (num === 1 || num === 0) {
+        return 1;
+    }
+
+
+    for (let index = num - 1; index > 0; index--) {
+        num = num * index;
+    }
+
+    return num;
+}
 
 // 3
-// const num = prompt('введи num');
-// for (let index = 1; index <= num; index++) {
-//     if (num % index === 0) {
-//         alert(index);
-//     }
-// }
+function foo(a, b, c) {
+    return Number(`${a}${b}${c}`)
+}
 
 // 4
-// const num = prompt('введи num');
-// alert(String(num).length)
+function calcArea(a, b) {
+    if (b === undefined) {
+        return a ** 2;
+    }
+
+    return a * b;
+}
 
 // 5
-// let num;
-// let evenCount = 0;
-// let negativeCount = 0;
-// let positiveCount = 0;
-// let zeroCount = 0;
-// for (let index = 0; index < 3; index++) {
-//     num = prompt('введи')
-//     if (num % 2 === 0) {
-//         evenCount++;
-//     }
+function foo(x) {
+    const arr = [];
+    let sum = 0;
 
-//     if (num < 0) {
-//         negativeCount++;
-//     } else if (num > 0) {
-//         positiveCount++;
-//     } else {
-//         zeroCount++;
-//     }
-// }
+    for (let index = 1; index < x; index++) {
+        if (x % index == 0) {
+            arr.push(index)
+        }
+    }
+
+    for (let index = 0; index < arr.length; index++) {
+        sum += arr[index]
+    }
+
+    return x === sum ? true : false;
+}
 
 // 6
-// let num1;
-// let num2;
-// let operator;
-// let result;
-// let isContinue = true;
+function foo2(min, max) {
+    const arr = [];
 
-// while (isContinue) {
-//     num1 = prompt('1 число');
-//     num2 = prompt('2 число');
-//     operator = prompt('оператор');
+    for (let index = min; index <= max; index++) {
+        if (foo(index)) {
+            arr.push(index);
+        }
+    }
 
-//     switch (operator) {
-//         case '+':
-//             result = num1 + num2
-//             break;
-//         case '-':
-//             result = num1 - num2
-//             break;
-//         case '*':
-//             result = num1 * num2
-//             break;
-//         case '/':
-//             result = num1 / num2
-//             break;
-//     }
+    return arr;
+}
 
-//     alert(`результат вычислений: ${result}`);
-//     isContinue = confirm('Продолжить?');
-// }
+// 7
+function formatTime(hours, minuts = '0', seconds = '0') {
+    hours = hours < 10 ? `0${hours}` : hours;
+    minuts = minuts < 10 ? `0${minuts}` : minuts;
+    seconds = seconds < 10 ? `0${seconds}` : seconds;
 
-// 7.1
-// let num = prompt('введи число');
-// let shift = prompt('введи сдвиг');
-
-// let symbols = String(num).split('');
-// const result = [];
-
-// for (let index = shift; symbols.length !== result.length; index++) {
-//     result.push(symbols[index]);
-//     if (index === symbols.length - 1) {
-//         index = 0
-//     }
-// }
-
-// -- 26 38 41 56 11
-// <<2
-// 38 41 56 11 26
+    return `${hours}:${minuts}:${seconds}`;
+}
 
 // 8
-// const days = [
-//     'пн',
-//     'вт',
-//     'ср',
-//     'чт',
-//     'пт',
-//     'сб',
-//     'вс',
-// ];
-// let daysIndex = 0;
-// let isContinue;
-// do {
-//     if (daysIndex === days.length) {
-//         daysIndex = 0;
-//     }
-
-//     isContinue = confirm(`сейчас ${days[daysIndex]}. хотите продолжить?`);
-//     daysIndex++;
-// } while (isContinue)
+function calcSeconds(hours, minuts = 0, seconds = 0) {
+    return hours * 3600 + minuts * 60 + seconds;
+}
 
 // 9
-// for (let index = 2; index <= 9; index++) {
-//     let line = ''
+function calcTime(seconds) {
+    let hours;
+    let minuts;
 
-//     for (let factor = 1; factor <= 10; factor++) {
-//         line += `${index * factor} `;
-//     }
+    hours = Math.floor(seconds / 3600);
+    minuts = Math.abs(hours * 60 - Math.floor(seconds / 60));
 
-//     console.log(line);
-// }
+    seconds = seconds - hours * 3600 - minuts * 60
+
+    return formatTime(hours, minuts, seconds)
+}
 
 // 10
-// let min = 0;
-// let max = 100;
-// let isFinded = false;
-// while (!isFinded) {
-//     let assumption = ((max - min) / 2) + min;
-//     isFinded = confirm(`${Math.floor(assumption)} это оно`);
-//     if (!isFinded) {
-//         let isBiger = confirm('загаданное число больше?');
-//         if (isBiger) {
-//             min = assumption;
-//         } else {
-//             max = assumption;
-//         }
-//     }
-// }
+function foo(h1, m1, s1, h2, m2, s2) {
+    let delta = calcSeconds(h1, m1, s1) - calcSeconds(h2, m2, s2);
+    let x = Math.abs(delta);
 
-
-// do {
-//     let assumption = (max - min) / 2
-//     let result = confirm(`${assumption} оно?`)
-// } while (result)
-
-// 0-100>50
-// 0-50>25
-// 25-50>25
+    return calcTime(x);
+}
