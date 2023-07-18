@@ -1,123 +1,84 @@
-// 1
-function stringFrom() {
-    let result = '';
+// Массивоподобный объект arguments
+// Содержит все передаваемые аргументы. Доступ осуществляется по индексу.
+// Позволяет функции получать любое кол-во аргументов.
+// Нельзя использовать методы массива.
+function foo() {
     for (let index = 0; index < arguments.length; index++) {
-        result += arguments[index];
+        console.log(arguments[index]);
     }
-
-    return result;
 }
 
-// 2
-function searchMinArg() {
-    let min = arguments[0];
+// аналог начиная с ES6 - spread syntax
+// ( нет в курсе. кому интересно, читать тут 
+//    https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Operators/Spread_syntax )
+function foo(...argsArrayName) {
+    argsArrayName.forEach(arg => console.log(arg))
+}
+// Собирает все аргументы в массив с произвольным именем и позволяет использовать методы массива.
 
-    for (let index = 1; index < arguments.length; index++) {
-        if (arguments[index] < min) {
-            min = arguments[index];
+
+// Область видимости переменных.
+
+// поднятие / хостинг
+var x = 5;
+function foo() {
+    console.log(x); // undefined
+    var x = 1;
+    console.log(x); // 1
+}
+console.log(x); // 5
+
+// глобальные переменные
+function foo() {
+    x = 1;
+}
+
+function foo() {
+    console.log(x); // 1
+}
+
+// плохой пример
+function foo(...args) {
+    for (i = 0; i < args.length; i++) {
+        console.log(args[i]);
+    }
+}
+
+for (i = 0; i < 3; i++) {
+    foo(1, 5, 6, 7, 1)
+}
+
+// let / const
+function foo() {
+    if (true) {
+        let x = 1;
+        const y = 2;
+        var z = 3;
+        if (true) {
+            x = 10;
+            console.log(x); // 1
+            console.log(y); // 2
+            console.log(z); // 3
         }
     }
-
-    return min;
-}
-
-// 3
-function numbers() {
-    let numbersCount = 0;
-
-    for (let index = 0; index < arguments.length; index++) {
-        if (typeof (arguments[index]) === 'number') {
-            numbersCount++;
-        }
-    }
-
-    return numbersCount;
-}
-
-// 4
-function mean() {
-    let numCount = 0;
-    let sum = 0;
-
-    for (let index = 0; index < arguments.length; index++) {
-        if (typeof (arguments[index]) === 'number') {
-            numCount++;
-            sum += arguments[index];
-        }
-    }
-
-    return sum / numCount;
-}
-
-// 5
-function foo(num) {
-
-    if (num === 2) {
-        return true;
-    }
-
-    if (num < 2) {
-        return false;
-    }
-
-    return foo(num / 2);
+    console.log(x); // undefined
+    console.log(y); // undefined
+    console.log(z); // 3
 }
 
 
-// 6
-function foo(num) {
-    if (num < 10) {
-        return num;
-    }
-
-    return String(num % 10) + foo(parseInt(num / 10))
-}
-
-// 1
-function foo(num) {
-    if (num === 1) {
-        return 1;
-    }
-
-    return num * foo(num - 1)
-}
-
-// 2
-function foo(min, max) {
-    if (min !== max) {
-        console.log(min);
-        foo(min + 1, max)
-    } else {
-        console.log(max);
+// Рекурсия - вызов функцией самой себя
+function foo(x) {
+    if (x.length <= 10) {
+        // логику
+        return foo(x + '^')
     }
 }
 
-function foo(min, max) {
-    if (min !== max) {
-        console.log(max);
-        foo(min, max - 1)
-    } else {
-        console.log(min);
-    }
-}
+console.log(foo('*'));
 
-// 3
-// выше делали
-
-// 4
-function foo(num) {
-    if (num < 10) {
-        return num;
-    }
-
-    return num % 10 + foo(parseInt(num / 10))
-}
-
-// 5
-function foo(num) {
-    if (num === 1) {
-        return '()'
-    }
-
-    return `(${foo(num - 1)})`
-}
+foo('*')
+foo('*^' + '^')
+foo('*^^')
+foo('*^^^')
+foo('*^^^^')
