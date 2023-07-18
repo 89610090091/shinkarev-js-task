@@ -1,149 +1,157 @@
-// 1
-// const min = prompt('введи min');
-// const max = prompt('введи max');
-// let sum = 0;
-
-// for (let index = min; index < max; index++) {
-//     sum = sum + index;
+// // 1
+// function searchMin(a, b) {
+//     if (a > b) {
+//         return b;
+//     } else {
+//         return a;
+//     }
 // }
 
-// 3
-// const num = prompt('введи num');
-// for (let index = 1; index <= num; index++) {
-//     if (num % index === 0) {
-//         alert(index);
+// // 2
+// function calcDegree(num, degree) {
+//     return num ** degree;
+// }
+
+// // 3
+// function calc(num1, num2, operator) {
+//     let result;
+//     switch (operator) {
+//         case '+':
+//             result = num1 + num2;
+//             break;
+//         case '-':
+//             result = num1 - num2;
+//             break;
+//         case '*':
+//             result = num1 * num2;
+//             break;
+//         case '/':
+//             result = num1 / num2;
+//             break;
 //     }
+//     return result;
 // }
 
 // 4
-// const num = prompt('введи num');
-// alert(String(num).length)
+// function isSimple(num) {
+//     if (num < 0 || num - Math.floor(num) !== 0) {
+//         return false;
+//     } else {
+//         return true;
+//     }
+// }
 
 // 5
-// let num;
-// let evenCount = 0;
-// let negativeCount = 0;
-// let positiveCount = 0;
-// let zeroCount = 0;
-// for (let index = 0; index < 3; index++) {
-//     num = prompt('введи')
-//     if (num % 2 === 0) {
-//         evenCount++;
-//     }
-
-//     if (num < 0) {
-//         negativeCount++;
-//     } else if (num > 0) {
-//         positiveCount++;
-//     } else {
-//         zeroCount++;
+// function getCalcTable(number) {
+//     for (let index = 1; index <= 10; index++) {
+//         console.log(`${number}x${index}=${number * index}`);
 //     }
 // }
 
 // 6
-// let num1;
-// let num2;
-// let operator;
-// let result;
-// let isContinue = true;
-
-// while (isContinue) {
-//     num1 = prompt('1 число');
-//     num2 = prompt('2 число');
-//     operator = prompt('оператор');
-
-//     switch (operator) {
-//         case '+':
-//             result = num1 + num2
-//             break;
-//         case '-':
-//             result = num1 - num2
-//             break;
-//         case '*':
-//             result = num1 * num2
-//             break;
-//         case '/':
-//             result = num1 / num2
-//             break;
+// function getTail(num1, num2) {
+//     let tail = num1;
+//     while (tail >= num2) {
+//         tail = tail - num2;
 //     }
 
-//     alert(`результат вычислений: ${result}`);
-//     isContinue = confirm('Продолжить?');
+//     return tail;
 // }
 
-// 7.1
-// let num = prompt('введи число');
-// let shift = prompt('введи сдвиг');
+// console.log(getTail(9, 3));
 
-// let symbols = String(num).split('');
-// const result = [];
+// 7
+// function calcSum(num1, num2, num3, num4, num5) {
+//     let result = 0;
 
-// for (let index = shift; symbols.length !== result.length; index++) {
-//     result.push(symbols[index]);
-//     if (index === symbols.length - 1) {
-//         index = 0
+//     if (num1 !== undefined) {
+//         // result = result + num1
+//         result += num1
 //     }
-// }
 
-// -- 26 38 41 56 11
-// <<2
-// 38 41 56 11 26
+//     if (num2 !== undefined) {
+//         result += num2
+//     }
+
+//     if (num3 !== undefined) {
+//         result += num3
+//     }
+
+//     if (num4 !== undefined) {
+//         result += num4
+//     }
+
+//     if (num5 !== undefined) {
+//         result += num5
+//     }
+
+//     return result;
+// }
 
 // 8
-// const days = [
-//     'пн',
-//     'вт',
-//     'ср',
-//     'чт',
-//     'пт',
-//     'сб',
-//     'вс',
-// ];
-// let daysIndex = 0;
-// let isContinue;
-// do {
-//     if (daysIndex === days.length) {
-//         daysIndex = 0;
+// function searchBiger(num1, num2, num3, num4, num5) {
+//     let result = num1;
+
+//     if (num2 !== undefined) {
+//         if (num2 > result) {
+//             result = num2
+//         }
 //     }
 
-//     isContinue = confirm(`сейчас ${days[daysIndex]}. хотите продолжить?`);
-//     daysIndex++;
-// } while (isContinue)
+//     if (num3 !== undefined) {
+//         if (num3 > result) {
+//             result = num3
+//         }
+//     }
+
+//     if (num4 !== undefined) {
+//         if (num4 > result) {
+//             result = num4
+//         }
+//     }
+
+//     if (num5 !== undefined) {
+//         if (num5 > result) {
+//             result = num5
+//         }
+//     }
+
+//     return result;
+// }
 
 // 9
-// for (let index = 2; index <= 9; index++) {
-//     let line = ''
+// function getEven(min, max, isEven) {
+//     let result = [];
 
-//     for (let factor = 1; factor <= 10; factor++) {
-//         line += `${index * factor} `;
+//     for (let index = min; index <= max; index++) {
+//         if ((index % 2 === 0) === isEven) {
+//             result.push(index)
+//         }
 //     }
 
-//     console.log(line);
+//     return result;
 // }
 
 // 10
-// let min = 0;
-// let max = 100;
-// let isFinded = false;
-// while (!isFinded) {
-//     let assumption = ((max - min) / 2) + min;
-//     isFinded = confirm(`${Math.floor(assumption)} это оно`);
-//     if (!isFinded) {
-//         let isBiger = confirm('загаданное число больше?');
-//         if (isBiger) {
-//             min = assumption;
-//         } else {
-//             max = assumption;
-//         }
+// function getNextDay(day, month, year) {
+//     day++;
+//     if (day === 31) {
+//         day = 1
+//         month++
 //     }
+
+//     if (month === 13) {
+//         month = 1
+//         year++
+//     }
+
+//     let isVis = checkVis(year)
+//     console.log(day + '.' + month + '.' + year);
+//     console.log('этот год високосный?', isVis);
 // }
 
+// function checkVis(year) {
+//     return year % 4 === 0
+// }
 
-// do {
-//     let assumption = (max - min) / 2
-//     let result = confirm(`${assumption} оно?`)
-// } while (result)
-
-// 0-100>50
-// 0-50>25
-// 25-50>25
+// getNextDay(30, 12, 2007)
