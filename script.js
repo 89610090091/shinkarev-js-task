@@ -1,157 +1,123 @@
-// // 1
-// function searchMin(a, b) {
-//     if (a > b) {
-//         return b;
-//     } else {
-//         return a;
-//     }
-// }
+// 1
+function stringFrom() {
+    let result = '';
+    for (let index = 0; index < arguments.length; index++) {
+        result += arguments[index];
+    }
 
-// // 2
-// function calcDegree(num, degree) {
-//     return num ** degree;
-// }
+    return result;
+}
 
-// // 3
-// function calc(num1, num2, operator) {
-//     let result;
-//     switch (operator) {
-//         case '+':
-//             result = num1 + num2;
-//             break;
-//         case '-':
-//             result = num1 - num2;
-//             break;
-//         case '*':
-//             result = num1 * num2;
-//             break;
-//         case '/':
-//             result = num1 / num2;
-//             break;
-//     }
-//     return result;
-// }
+// 2
+function searchMinArg() {
+    let min = arguments[0];
+
+    for (let index = 1; index < arguments.length; index++) {
+        if (arguments[index] < min) {
+            min = arguments[index];
+        }
+    }
+
+    return min;
+}
+
+// 3
+function numbers() {
+    let numbersCount = 0;
+
+    for (let index = 0; index < arguments.length; index++) {
+        if (typeof (arguments[index]) === 'number') {
+            numbersCount++;
+        }
+    }
+
+    return numbersCount;
+}
 
 // 4
-// function isSimple(num) {
-//     if (num < 0 || num - Math.floor(num) !== 0) {
-//         return false;
-//     } else {
-//         return true;
-//     }
-// }
+function mean() {
+    let numCount = 0;
+    let sum = 0;
+
+    for (let index = 0; index < arguments.length; index++) {
+        if (typeof (arguments[index]) === 'number') {
+            numCount++;
+            sum += arguments[index];
+        }
+    }
+
+    return sum / numCount;
+}
 
 // 5
-// function getCalcTable(number) {
-//     for (let index = 1; index <= 10; index++) {
-//         console.log(`${number}x${index}=${number * index}`);
-//     }
-// }
+function foo(num) {
+
+    if (num === 2) {
+        return true;
+    }
+
+    if (num < 2) {
+        return false;
+    }
+
+    return foo(num / 2);
+}
+
 
 // 6
-// function getTail(num1, num2) {
-//     let tail = num1;
-//     while (tail >= num2) {
-//         tail = tail - num2;
-//     }
+function foo(num) {
+    if (num < 10) {
+        return num;
+    }
 
-//     return tail;
-// }
+    return String(num % 10) + foo(parseInt(num / 10))
+}
 
-// console.log(getTail(9, 3));
+// 1
+function foo(num) {
+    if (num === 1) {
+        return 1;
+    }
 
-// 7
-// function calcSum(num1, num2, num3, num4, num5) {
-//     let result = 0;
+    return num * foo(num - 1)
+}
 
-//     if (num1 !== undefined) {
-//         // result = result + num1
-//         result += num1
-//     }
+// 2
+function foo(min, max) {
+    if (min !== max) {
+        console.log(min);
+        foo(min + 1, max)
+    } else {
+        console.log(max);
+    }
+}
 
-//     if (num2 !== undefined) {
-//         result += num2
-//     }
+function foo(min, max) {
+    if (min !== max) {
+        console.log(max);
+        foo(min, max - 1)
+    } else {
+        console.log(min);
+    }
+}
 
-//     if (num3 !== undefined) {
-//         result += num3
-//     }
+// 3
+// выше делали
 
-//     if (num4 !== undefined) {
-//         result += num4
-//     }
+// 4
+function foo(num) {
+    if (num < 10) {
+        return num;
+    }
 
-//     if (num5 !== undefined) {
-//         result += num5
-//     }
+    return num % 10 + foo(parseInt(num / 10))
+}
 
-//     return result;
-// }
+// 5
+function foo(num) {
+    if (num === 1) {
+        return '()'
+    }
 
-// 8
-// function searchBiger(num1, num2, num3, num4, num5) {
-//     let result = num1;
-
-//     if (num2 !== undefined) {
-//         if (num2 > result) {
-//             result = num2
-//         }
-//     }
-
-//     if (num3 !== undefined) {
-//         if (num3 > result) {
-//             result = num3
-//         }
-//     }
-
-//     if (num4 !== undefined) {
-//         if (num4 > result) {
-//             result = num4
-//         }
-//     }
-
-//     if (num5 !== undefined) {
-//         if (num5 > result) {
-//             result = num5
-//         }
-//     }
-
-//     return result;
-// }
-
-// 9
-// function getEven(min, max, isEven) {
-//     let result = [];
-
-//     for (let index = min; index <= max; index++) {
-//         if ((index % 2 === 0) === isEven) {
-//             result.push(index)
-//         }
-//     }
-
-//     return result;
-// }
-
-// 10
-// function getNextDay(day, month, year) {
-//     day++;
-//     if (day === 31) {
-//         day = 1
-//         month++
-//     }
-
-//     if (month === 13) {
-//         month = 1
-//         year++
-//     }
-
-//     let isVis = checkVis(year)
-//     console.log(day + '.' + month + '.' + year);
-//     console.log('этот год високосный?', isVis);
-// }
-
-// function checkVis(year) {
-//     return year % 4 === 0
-// }
-
-// getNextDay(30, 12, 2007)
+    return `(${foo(num - 1)})`
+}
