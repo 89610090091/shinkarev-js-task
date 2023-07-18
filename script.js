@@ -40,64 +40,64 @@ for (let index = 0; index < 3; index++) {
     }
 }
 
-// // 6
-// // let num1;
-// // let num2;
-// // let operator;
-// // let result;
-// // let isContinue = true;
+// 6
+let num1;
+let num2;
+let operator;
+let result;
+let isContinue = true;
 
-// // while (isContinue) {
-// //     num1 = prompt('1 число');
-// //     num2 = prompt('2 число');
-// //     operator = prompt('оператор');
+while (isContinue) {
+    num1 = prompt('1 число');
+    num2 = prompt('2 число');
+    operator = prompt('оператор');
 
-// //     switch (operator) {
-// //         case '+':
-// //             result = num1 + num2
-// //             break;
-// //         case '-':
-// //             result = num1 - num2
-// //             break;
-// //         case '*':
-// //             result = num1 * num2
-// //             break;
-// //         case '/':
-// //             result = num1 / num2
-// //             break;
-// //     }
+    switch (operator) {
+        case '+':
+            result = num1 + num2
+            break;
+        case '-':
+            result = num1 - num2
+            break;
+        case '*':
+            result = num1 * num2
+            break;
+        case '/':
+            result = num1 / num2
+            break;
+    }
 
-// //     alert(`результат вычислений: ${result}`);
-// //     isContinue = confirm('Продолжить?');
-// // }
+    alert(`результат вычислений: ${result}`);
+    isContinue = confirm('Продолжить?');
+}
 
-// // 7.1
-// // let num = prompt('введи число');
-// // let shift = prompt('введи сдвиг');
+// 7.1
+let num = prompt('введи число');
+let shift = prompt('введи сдвиг');
 
-// // let symbols = String(num).split('');
-// // const result = [];
+let symbols = String(num).split('');
+const result = [];
 
-// // for (let index = shift; symbols.length !== result.length; index++) {
-// //     result.push(symbols[index]);
-// //     if (index === symbols.length - 1) {
-// //         index = 0
-// //     }
-// // }
+for (let index = shift; symbols.length !== result.length; index++) {
+    result.push(symbols[index]);
+    if (index === symbols.length - 1) {
+        index = 0
+    }
+}
 
 // // -- 26 38 41 56 11
 // // <<2
 // // 38 41 56 11 26
 
-// // 8
-// // const days = [
-// //     'пн',
-// //     'вт',
-// //     'ср',
-// //     'чт',
-// //     'пт',
-// //     'сб',
-// //     'вс',
+// 8
+const days = [
+    'пн',
+    'вт',
+    'ср',
+    'чт',
+    'пт',
+    'сб',
+    'вс',
 // // ];
 // // let daysIndex = 0;
 // // let isContinue;
