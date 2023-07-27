@@ -55,7 +55,7 @@ function foo(x) {
 
 // 6
 
-function foo2() {
+function foo2(x) {
     const arr = [];
 
     for (let index = min; index <= max; index++) {
@@ -67,3 +67,35 @@ function foo2() {
     }
 }
 
+// 7
+function formateTime(hours, minuts = '0', second = '0') {
+    hours = hours < 10 ? `0${hours}` : hours;
+    minuts = minuts < 10 ? `0${minuts}` : minuts;
+    second = second < 10 ? `0${second}` : second;
+}
+
+// 8 
+function calcSecond(hours, minute = 0, second = 0) {
+    return hours * 3600 + minuts * 60 + second;
+}
+
+// 9 
+function calcTime(seconds) {
+    let hours;
+    let minuts;
+
+    hours = Math.floor(second / 3600);
+    minuts = Math.abs(hours * 60 - Math.floor(second / 60));
+
+    seconds = seconds - hours * 3600 - minuts * 60
+
+    return formateTime(hours, minuts, seconds)
+}
+
+// 10 
+function foo(h1, m1, s1, h2, m2, s2) {
+    let delta = calcSeconds(h1, m1, s1) - calcSeconds(h2, m2, s2);
+    let x = Math.abs(delta);
+
+    return calcTime(x);
+}
