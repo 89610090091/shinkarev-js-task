@@ -36,6 +36,34 @@ function calcArea(a, b) {
 }
 
 // 5
+function foo(x) {
+    const arr = [];
+    let sum = 0;
 
+    for (let index = 1; index < x; index) {
+        if (x % index == 0) {
+            arr.push(index)
+        }
+    }
 
+    for (let index = 0; index < arr.length; index++) {
+        sum += arr[index]
+    }
+
+    return x === sum ? true : false;
+}
+
+// 6
+
+function foo2() {
+    const arr = [];
+
+    for (let index = min; index <= max; index++) {
+        if (foo(index)) {
+            arr.push(index);
+        }
+
+        return arr;
+    }
+}
 
