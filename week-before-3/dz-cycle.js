@@ -121,9 +121,9 @@ let max = 100;
 let isFinded = false;
 while (!isFinded) {
     let assumption = ((max - min) / 2) + min;
-    isFinded = confirm(`${Math.floor(assumption)} это оно`);
+    isFinded = confirm(`${Math.floor(assumption)} this is it?`);
     if (!isFinded) {
-        let isBiger = confirm('загаданное число больше?');
+        let isBiger = confirm('the hidden number is greater?');
         if (isBiger) {
             min = assumption;
         } else {
@@ -134,7 +134,7 @@ while (!isFinded) {
 
 do {
     let assumption = (max - min) / 2
-    let result = confirm(`${assumption} оно?`)
+    let result = confirm(`${assumption} this is it?`)
 } while (result)
 
 
