@@ -17,7 +17,7 @@ const fooName = () => {
 
 }
 
-// function declaration
+// function 
 function fooName() {
 
 }
@@ -31,4 +31,4 @@ function foo1() {
 }
 
 const foo = foo1();
-foo()
+foo();
