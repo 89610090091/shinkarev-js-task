@@ -85,3 +85,54 @@ function calcSum(num1, num2, num3, num4, num5) {
     return result;
 }
 
+// 8
+function searchBiger(num1, num2, num3, num4, num5) {
+    let result = num1;
+
+    if (num2 !== undefined) {
+        if (num2 > result) {
+            result = num2
+        }
+    }
+
+    if (num3 !== undefined) {
+        if (num3 > result) {
+            result = num3
+        }
+    }
+
+    if (num4 !== undefined) {
+        if (num4 > result) {
+            result = num4
+        }
+    }
+
+    if (num5 !== undefined) {
+        if (num5 > result) {
+            result = num5
+        }
+    }
+
+    return result;
+}
+
+//9
+function getEven(min, max, isEven) {
+    let result = [];
+
+    for (let index = min; index <= max; index++) {
+        if ((index % 2 === 0) === isEven) {
+            result.push(index)
+        }
+    }
+
+    return result;
+}
+
+// 10
+
+
+
+
+
+
