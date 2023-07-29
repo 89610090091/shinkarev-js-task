@@ -130,7 +130,28 @@ function getEven(min, max, isEven) {
 }
 
 // 10
+function getNextday(day, month, year) {
+    day++;
+    if (day === 31) {
+        day = 1;
+        month++;
+    }
 
+    if (month === 13) {
+        month = 1;
+        year++;
+    }
+
+    let isVis = checkVis(year)
+    console.log(day + '.' + month + '.' + year);
+    console.log('is this a leap year?', isVis);
+}
+
+function checkVis(year) {
+    return year % 4 === 0;
+}
+
+getNextday(30, 12, 2007)
 
 
 
