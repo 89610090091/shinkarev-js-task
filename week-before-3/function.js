@@ -17,7 +17,7 @@ const fooName = () => {
 
 }
 
-// function 
+// function declaration
 function fooName() {
 
 }
