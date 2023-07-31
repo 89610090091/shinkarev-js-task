@@ -2,7 +2,7 @@ const rectangle = {
     coordLeftTop: [1, 1],
     coordRightBottom: [10, 10],
     logCoords: function () {
-        console.log('Координаты прямоугольника: ', `${this.coordLeftTop}:${this.coordRightBottom}`);
+        console.log('rectangle coordinates: ', `${this.coordLeftTop}:${this.coordRightBottom}`);
     },
     getWidth: function () {
         return Math.abs(this.coordRightBottom[0] - this.coordLeftTop[0])
