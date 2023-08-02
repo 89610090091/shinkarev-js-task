@@ -147,7 +147,7 @@ function allPrice(array) {
 allPrice(reciept); // result 
 console.log(' + + + + ');
 
-function maxPrice(0array) {
+function maxPrice(array) {
     array.sort(comparer);
     console.log(array[0].name);
 }
