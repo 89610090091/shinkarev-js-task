@@ -74,8 +74,7 @@ const article3 = new Article('Наша статья3', 'В ней что-то н
 
 // 3
 class NewsFeed {
-    // приватное свойство
-    #articles;
+    // private property
 
     get feedLength() {
         return this.articles.length;
