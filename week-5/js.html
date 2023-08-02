@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="random-number"></div>
+    <button id="generate-button">generate</button>
+
+    <script>
+        const randomNumberView = document.getElementById('random-number');
+        const generateButton = document.getElementById('generate-button');
+
+        generateButton.addEventListener('click', () => {
+            randomNumberView.innerText = getRandomInRange(0, 100)
+        });
+
+
+        function getRandomInRange(min, max) {
+            return Math.round(min + Math.random() * (max - min));
+        }
+    </script>
+</body>
+
+</html>
