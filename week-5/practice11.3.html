@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="toggle" style="display: block;">toggle</button>
+    <span id="text">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit doloribus aperiam repudiandae quia voluptatem?
+        Obcaecati numquam facere corrupti eius mollitia, quis exercitationem voluptatem doloribus quo architecto
+        suscipit dolorem cum dicta.
+    </span>
+    <script>
+        const toggle = document.getElementById('toggle');
+        const text = document.getElementById('text');
+        text.hidden = true;
+
+        toggle.addEventListener('click', () => {
+            text.hidden = text.hidden === true ? false : true;
+        });
+
+    </script>
+</body>
+
+</html>

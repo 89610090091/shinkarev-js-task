@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tab-menu {
+            text-align: center;
+            display: flex;
+            background: darkgrey;
+            height: 150px;
+        }
+
+        .tabs {
+            background: darkslategray;
+            width: 75px;
+        }
+
+        .content {
+            display: none;
+        }
+
+        .tab:hover {
+            background: darkturquoise;
+            cursor: pointer;
+        }
+
+        .content-active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tabs">
+        <div class="tab">таб 1</div>
+        <div class="tab">таб 2</div>
+        <div class="tab">таб 3</div>
+    </div>
+
+
+
+
+    <div class="tab-menu">
+        <div class="tabs">
+            <div class="tab">таб 1</div>
+            <div class="tab">таб 2</div>
+            <div class="tab">таб 3</div>
+        </div>
+        <div class="content-view">
+            <div class="content content-active">Содержимое таба 1</div>
+            <div class="content">Содержимое таба 2</div>
+            <div class="content">Содержимое таба 3</div>
+        </div>
+    </div>
+    <script>
+        const tabs = document.querySelector('.tabs');
+        const contentView = document.querySelector('.content-view');
+
+        tabs.addEventListener('click', (event) => {
+            const index = Array.from(event.currentTarget.children).indexOf(event.target);
+            Array.from(contentView.children).forEach((child) => child.classList.remove('content-active'))
+            contentView.children[index].classList.add('content-active')
+        });
+    </script>
+</body>
+
+</html>
