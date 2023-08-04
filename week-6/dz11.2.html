@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(128, 128, 128, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal__body {
+            width: 300px;
+            height: 200px;
+            background: gray;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="open-button">открыть</button>
+    <div class="modal">
+        <div class="modal__body">
+            hello from modal window
+            <button class="close-button">закрыть</button>
+        </div>
+    </div>
+    <script>
+        const modal = document.querySelector('.modal');
+        const openButton = document.querySelector('.open-button');
+        const closeButton = document.querySelector('.close-button');
+
+        // openButton.onclick = function() {
+        //     modal.style.display = 'flex';
+        // }
+
+        openButton.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+
+        closeButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>

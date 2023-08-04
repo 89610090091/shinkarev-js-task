@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .draged {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="hello.ru"></a>
+    <a href="hello.ru"></a>
+    <a href="hello.ru"></a>
+    <script>
+        const first = document.getElementById('first');
+        const last = document.getElementById('last');
+        const range = document.createRange()
+        range.setStartAfter(first)
+        range.setEndBefore(last)
+
+
+        const list = document.getElementById('list');
+        list.addEventListener('drag', (event) => {
+            console.log('asd');
+            event.target.classList.add('draged');
+        })
+        list.addEventListener('dragexit')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="text">
+        <input type="text" class="user-input" placeholder="Enter your name">
+    </div>
+
+    <script>
+        const input = document.querySelector('.user-input');
+        input.addEventListener('input', checkInput);
+        console.log(input);
+
+        function checkInput(event) {
+            if (event.data === '1' ||
+                event.data === '2' ||
+                event.data === '3' ||
+                event.data === '4' ||
+                event.data === '5' ||
+                event.data === '6' ||
+                event.data === '7' ||
+                event.data === '8' ||
+                event.data === '9' ||
+                event.data === '0'
+            ) {
+                const arr = Array.from(input.value).slice(0, -1);
+                input.value = arr.join('');
+            } else {
+                console.log(event.data);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
