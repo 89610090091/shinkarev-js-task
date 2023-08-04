@@ -1,4 +1,6 @@
 // 1
+
+
 class Marker {
     color;
     value;
@@ -48,7 +50,7 @@ class CustomDate extends Date {
 
     check() {
         if (Date.now() > this) {
-            console.log('дата из пролого');
+            console.log('дата из прошлого');
         } else if (Date.now() < this) {
             console.log('дата из будущеюго');
         } else {
