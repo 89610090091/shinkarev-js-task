@@ -144,13 +144,6 @@ class HtmlClass {
     }
 }
 
-.rectangle {
-    bacground: blue;
-}
-
-
-
-
 const rectangleStyle = new CssClass('rectangle');
 rectangleStyle.setStyle('border', '1px solid black');
 rectangleStyle.setStyle('width', '100px');
