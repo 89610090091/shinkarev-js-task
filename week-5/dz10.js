@@ -69,7 +69,6 @@ class CustomDate extends Date {
     }
 }
 
-// const today = new CustomDate('December 17, 1995 03:24:00');
 
 // 3
 class Employee {
