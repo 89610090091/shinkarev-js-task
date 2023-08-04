@@ -84,7 +84,6 @@ class HtmlElement {
     }
 }
 
-// Использование:
 // const myElement = new HtmlElement('div')
 // myElement.setAttribute('', '') 
 
