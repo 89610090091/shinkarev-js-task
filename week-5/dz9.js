@@ -86,7 +86,7 @@ class HtmlElement {
 
 // Использование:
 // const myElement = new HtmlElement('div')
-// myElement.setAttribute('', '') и т.д.
+// myElement.setAttribute('', '') 
 
 // 3
 class CssClass {
