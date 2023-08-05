@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #background {
+            width: 100%;
+            height: 100%;
+            background: url('field.png') no-repeat;
+            background-size: 100% 100%;
+
+        }
+
+        #ball {
+            width: 100px;
+            height: 100px;
+            position: fixed;
+            left: calc(50% - 50px);
+            top: calc(50% - 50px);
+            transition: all 1s linear;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="background">
+        <img id="ball" src="ball_icon.svg">
+    </div>
+    <script>
+        const ball = document.getElementById('ball');
+        document.addEventListener('click', (event) => {
+            const positionX = event.clientX;
+            const positionY = event.clientY;
+
+            let newPositionX = positionX - 50;
+            let newPositionY = positionY - 50;
+
+            if (newPositionX < 0) {
+                newPositionX = 0;
+            }
+
+            if (newPositionX > window.innerWidth - 100) {
+                newPositionX = window.innerWidth - 100;
+            }
+
+            if (newPositionY < 0) {
+                newPositionY = 0;
+            }
+
+            if (newPositionY > window.innerHeight - 100) {
+                newPositionY = window.innerHeight - 100;
+            }
+
+            ball.style.left = `${newPositionX}px`;
+            ball.style.top = `${newPositionY}px`;
+        });
+    </script>
+</body>
+
+</html>
+
+
+<!-- x:800 y:450 -->
