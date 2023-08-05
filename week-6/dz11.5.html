@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style1.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="rowsList">
+        <li draggable="true">строка 1</li>
+        <li draggable="true">строка 2</li>
+        <li draggable="true">строка 3</li>
+    </ul>
+    <script>
+        const rowsList = document.getElementById('rowsList');
+        rowsList.addEventListener('click', (event) => {
+            Array.from(rowsList.children).forEach((child) => {
+                child.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        });
+    </script>
+</body>
+
+</html>
