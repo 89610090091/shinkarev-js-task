@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body,
+        .content {
+            width: 100%;
+            height: 100%;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-flow: column;
+            gap: 25px
+        }
+
+        .traffic-light {
+            width: 500px;
+            height: 200px;
+            border: 3px solid black;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .light {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: darkgrey;
+        }
+
+        .red.active {
+            background: red;
+        }
+
+        .yellow.active {
+            background: yellow;
+        }
+
+        .green.active {
+            background: green;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="traffic-light">
+            <div class="red light active"></div>
+            <div class="yellow light"></div>
+            <div class="green light"></div>
+        </div>
+        <button class="traffic-button">next</button>
+    </div>
+    <script>
+        const buttonNext = document.querySelector('.traffic-button');
+        buttonNext.addEventListener('click', () => {
+            const red = document.querySelector('.red');
+            const yellow = document.querySelector('.yellow');
+            const green = document.querySelector('.green');
+
+            const currentActiveElement = document.querySelector('.active');
+            switch (currentActiveElement) {
+                case red:
+                    red.classList.remove('active');
+                    yellow.classList.add('active');
+                    break;
+                case yellow:
+                    yellow.classList.remove('active');
+                    green.classList.add('active');
+                    break;
+                case green:
+                    green.classList.remove('active');
+                    red.classList.add('active');
+                    break;
+            }
+
+        });
+    </script>
+</body>
+
+</html>
