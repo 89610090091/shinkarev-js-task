@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .info {
+            width: 300px;
+            height: 100px;
+            display: none;
+            background: coral;
+            position: absolute;
+        }
+
+        .btn {
+            position: absolute;
+            padding: 7px 13px;
+        }
+
+        #btn1 {
+            top: 20px;
+            left: 150px;
+        }
+
+        #btn2 {
+            top: 200px;
+            left: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn1" class="btn">кнопка 1</button>
+    <button id="btn2" class="btn">кнопка 2</button>
+    <div class="info">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, corrupti, dolores neque earum voluptatem sunt nobis
+        ut ipsum suscipit quae quaerat iste molestiae cumque at nisi aspernatur non, dolor soluta?
+    </div>
+    <script>
+        const btns = Array.from(document.querySelectorAll('.btn'));
+        const info = document.querySelector('.info');
+
+        btns.forEach((btn) => {
+            btn.addEventListener('mouseover', (event) => {
+                info.style.display = 'block';
+                const targetRect = event.target.getBoundingClientRect();
+                const infoRect = info.getBoundingClientRect();
+                info.style.left = `${targetRect.left}px`
+                if (targetRect.top < infoRect.height) {
+                    info.style.top = `${targetRect.top + targetRect.height + 10}px`
+                } else {
+                    info.style.top = `${targetRect.top - infoRect.height - 10}px`
+                }
+
+                setTimeout(() => {
+                    info.style.display = 'none';
+                }, 2000)
+            });
+        });
+    </script>
+</body>
+
+</html>
