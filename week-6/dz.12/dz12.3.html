@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .acordion {
+            width: 300px;
+        }
+
+        .header {
+            background: darkslateblue;
+            color: lightcyan;
+            cursor: pointer;
+        }
+
+        .header:hover {
+            background: rgb(95, 81, 187);
+        }
+
+        .body {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="acordion">
+        <div class="item">
+            <div class="header">
+                block 1
+            </div>
+            <div class="body">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi velit consequuntur tempore quo saepe,
+                necessitatibus laudantium quaerat soluta voluptas mollitia odit, libero quae eaque nesciunt! Eligendi
+                debitis nulla itaque exercitationem?
+            </div>
+        </div>
+        <div class="item">
+            <div class="header">
+                block 2
+            </div>
+            <div class="body">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quam distinctio, cumque eos explicabo
+                suscipit omnis molestias sunt delectus architecto sed in sit autem eius ullam. Nam necessitatibus
+                tempora tenetur?
+            </div>
+        </div>
+        <div class="item">
+            <div class="header">
+                block 3
+            </div>
+            <div class="body">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum quasi possimus inventore tenetur quod!
+                Dicta mollitia dolorem esse nihil. Nam commodi eligendi eos voluptatem dolor? Delectus dignissimos nisi
+                iure dolorem?
+            </div>
+        </div>
+    </div>
+    <script>
+        const acordion = document.querySelector('.acordion');
+        acordion.addEventListener('click', (event) => {
+            if (event.target.classList.contains('header')) {
+                Array.from(event.currentTarget.querySelectorAll('.body')).forEach((body) => {
+                    body.style.display = 'none';
+                });
+                event.target.nextElementSibling.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+
+</html>

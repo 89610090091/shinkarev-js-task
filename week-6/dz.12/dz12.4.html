@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let lastNewsIndex = 9;
+        const news = [
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quidem voluptatem recusandae optio cupiditate debitis, neque omnis nam minima in aliquam corrupti iste unde quasi impedit, harum sequi perspiciatis qui?',
+        ]
+        for (let index = 0; index < 10; index++) {
+            addParagraphToBody(news[lastNewsIndex]);
+        }
+
+        function addParagraphToBody(text) {
+            const paragraph = document.createElement('p');
+            document.body.append(paragraph);
+            paragraph.innerText = text;
+            lastNewsIndex++;
+        }
+
+        document.addEventListener('scroll', () => {
+            console.log('скролим!');
+            if (window.innerHeight + pageYOffset >= document.body.offsetHeight - 30) {
+                if (lastNewsIndex <= news.length - 1) {
+                    for (let index = 0; index < 3; index++) {
+                        addParagraphToBody(news[lastNewsIndex]);
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

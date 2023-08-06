@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .track-bar {
+            height: 30px;
+            width: 150px;
+            background: rgb(130, 130, 130);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .track-bar__line {
+            height: 5px;
+            width: 130px;
+            position: relative;
+            background: rgb(200, 200, 200);
+        }
+
+        .track-bar__button {
+            height: 13px;
+            width: 20px;
+            position: absolute;
+            top: -4px;
+            left: -10px;
+            background: rgba(11, 11, 97, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="track-bar">
+        <div class="track-bar__line">
+            <div class="track-bar__button"></div>
+        </div>
+    </div>
+    <script>
+        const line = document.querySelector('.track-bar__line');
+        const button = document.querySelector('.track-bar__button');
+
+        button.addEventListener('mousedown', () => {
+            document.addEventListener('mousemove', moveButton)
+        });
+
+        document.addEventListener('mouseup', () => {
+            document.removeEventListener('mousemove', moveButton)
+        });
+
+        function moveButton(event) {
+            const lineRect = line.getBoundingClientRect();
+            const cursorPosition = event.clientX;
+            let newPosition = cursorPosition - lineRect.x - 10;
+            if (newPosition < -10) {
+                newPosition = -10;
+            }
+
+            if (newPosition > lineRect.width - 10) {
+                newPosition = lineRect.width - 10;
+            }
+            button.style.left = `${newPosition}px`
+        }
+
+        line.addEventListener('click', (event) => {
+            if (event.target === line) {
+                const lineRect = line.getBoundingClientRect();
+                const cursorPosition = event.clientX;
+                button.style.left = `${cursorPosition - lineRect.x - 10}px`;
+            }
+        });
+    </script>
+</body>
+
+</html>

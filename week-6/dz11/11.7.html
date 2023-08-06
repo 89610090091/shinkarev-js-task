@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .name:hover {
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        ul:not([id="root"]) {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="root">
+        <li>
+            <span class="name">This PC</span>
+            <ul>
+                <li>
+                    <span class="name">Local Disc (C:)</span>
+                    <ul>
+                        <li>Program files</li>
+                        <li>Users</li>
+                        <li>Windows</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="name">Local Disc (D:)</span>
+                    <ul>
+                        <li>New folder 1</li>
+                        <li>New folder 2</li>
+                        <li>New folder 3</li>
+                    </ul>
+                </li>
+                <li><span class="name">Local Disc (E:)</span></li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        const root = document.getElementById('root');
+        root.addEventListener('click', (event) => {
+            if (event.target.classList.contains('name')) {
+                const nextElement = event.target.nextElementSibling;
+                if (nextElement) {
+                    if (nextElement.style.display === 'none') {
+                        nextElement.style.display = 'block';
+                    } else {
+                        nextElement.style.display = 'none';
+                    }
+
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

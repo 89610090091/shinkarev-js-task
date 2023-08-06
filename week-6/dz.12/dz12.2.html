@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .previous,
+        .next {
+            width: 70px;
+            height: 70px;
+            background: darkgray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #img-view {
+            height: 150px;
+        }
+
+        .disabled {
+            background: rgba(169, 169, 169, 0.1);
+            color: darkgray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="previous">назад</div>
+        <img id="img-view" src="" alt="image">
+        <div class="next">вперёд</div>
+    </div>
+    <script>
+        let currentIndex = 0;
+        const imgSources = [
+            'icon-js.png',
+            'icon-css.png',
+            'icon-html.png',
+        ]
+
+        const img = document.getElementById('img-view');
+        const previous = document.querySelector('.previous');
+        const next = document.querySelector('.next');
+        img.src = imgSources[currentIndex];
+        previous.classList.add('disabled');
+
+        previous.addEventListener('click', (event) => {
+            if (!event.target.classList.contains('disabled')) {
+                next.classList.remove('disabled')
+                currentIndex--;
+                img.src = imgSources[currentIndex];
+                if (currentIndex === 0) {
+                    previous.classList.add('disabled');
+                }
+            }
+        });
+
+        next.addEventListener('click', (event) => {
+            if (!event.target.classList.contains('disabled')) {
+                previous.classList.remove('disabled')
+                currentIndex++;
+                img.src = imgSources[currentIndex];
+                if (currentIndex === imgSources.length - 1) {
+                    next.classList.add('disabled');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
