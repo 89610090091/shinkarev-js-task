@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="result"></div>
+    <div>
+        <input type="checkbox" id="italic"><label for="italic">italic</label>
+        <input type="checkbox" id="bold"><label for="bold">bold</label>
+        <input type="checkbox" id="underline"><label for="underline">underline</label>
+    </div>
+    <input type="text" id="user-input">
+    <button id="send">send</button>
+    <script>
+        const resultView = document.getElementById('result');
+        const italicCheck = document.getElementById('italic');
+        const boldCheck = document.getElementById('bold');
+        const underlineCheck = document.getElementById('underline');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send');
+
+        sendButton.addEventListener('click', () => {
+            resultView.textContent = userInput.value;
+            resultView.style.fontStyle = 'normal';
+            resultView.style.fontWeight = 400;
+            resultView.style.textDecoration = 'none';
+
+            if (italicCheck.checked) {
+                resultView.style.fontStyle = 'italic';
+            }
+
+            if (boldCheck.checked) {
+                resultView.style.fontWeight = 'bold';
+            }
+
+            if (underlineCheck.checked) {
+                resultView.style.textDecoration = 'underline';
+            }
+        });
+
+    </script>
+</body>
+
+</html>
