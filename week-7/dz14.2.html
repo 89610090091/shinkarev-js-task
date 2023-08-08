@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="form">
+        <span id="question-index"></span>
+        <span id="question"></span><br>
+        <input type="radio" name="option" id="option1"><label for="option1" id="option1-label"></label><br>
+        <input type="radio" name="option" id="option2"><label for="option2" id="option2-label"></label><br>
+        <input type="submit" id="submit">
+    </form>
+    <script>
+        const questions = [
+            {
+                text: 'вопрос 1',
+                answer: '7',
+                options: ['123', '7']
+            },
+            {
+                text: 'вопрос 2',
+                answer: '17',
+                options: ['17', '123']
+            },
+            {
+                text: 'вопрос 3',
+                answer: '64',
+                options: ['123', '64']
+            },
+        ];
+
+        let correctAnswers = 0;
+        let currentQuestionsIndex = 0;
+        renderQuestion(currentQuestionsIndex);
+
+        const form = document.getElementById('form');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const checked = Array.from(document.getElementsByName('option')).find((radio) => radio.checked === true);
+
+            if (checked.value == questions[currentQuestionsIndex].answer) {
+                correctAnswers++;
+            }
+
+            if (currentQuestionsIndex === questions.length - 1) {
+                form.hidden = true;
+                alert(`кол-во правильный ответов: ${correctAnswers}`);
+            } else {
+                currentQuestionsIndex++;
+                renderQuestion(currentQuestionsIndex);
+            }
+        });
+
+        function renderQuestion(index) {
+            const indexView = document.getElementById('question-index');
+            const questionView = document.getElementById('question');
+            const option1View = document.getElementById('option1');
+            const option2View = document.getElementById('option2');
+            const option1LabelView = document.getElementById('option1-label');
+            const option2LabelView = document.getElementById('option2-label');
+
+            indexView.textContent = `${index + 1})`;
+            questionView.textContent = questions[index].text;
+            option1View.value = questions[index].options[0];
+            option2View.value = questions[index].options[1];
+            option1LabelView.textContent = questions[index].options[0];
+            option2LabelView.textContent = questions[index].options[1];
+
+        }
+    </script>
+</body>
+
+</html>
