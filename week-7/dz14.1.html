@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wraapper {
+            text-align: center;
+            margin-top: 100px;
+            margin-left: 400px;
+            border: 3px solid green;
+            padding: 60px;
+            width: 240px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wraapper">
+        <div class="messagees"></div>
+        <input type="text" id="input" placeholder="name"><br><br>
+        <textarea id="message-input" placeholder="message"></textarea><br><br>
+        <button id="send">send</button>
+    </div>
+
+    <script>
+        const nameInput = document.getElementById('name-input');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('send');
+
+        sendButton.addEventListener('click', () => {
+            const name = nameInput.value;
+            const message = messageInput.value;
+
+            const messageElement = document.createElement('div');
+            const nameElement = document.createElement('div');
+            const textElement = document.createElement('div');
+
+            nameElement.textContent = name;
+            textElement.textContent = message;
+
+            messageElement.append(nameElement, textElement);
+            document.querySelector('.messages').append(messageElement);
+
+            nameInput.velue = '';
+            messageInput.velue = '';
+        });
+    </script>
+</body>
+
+</html>
