@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div id="books">
+        <div class="book">
+            <div class="name">book 1</div>
+            <div class="prise">123</div>
+            <button class="add">add</button>
+        </div>
+        <div class="book">
+            <div class="name">book 2</div>
+            <div class="prise">234</div>
+            <button class="add">add</button>
+        </div>
+        <div class="book">
+            <div class="name">book 3</div>
+            <div class="prise">345</div>
+            <button class="add">add</button>
+        </div>
+        <div class="book">
+            <div class="name">book 4</div>
+            <div class="prise">456</div>
+            <button class="add">add</button>
+        </div>
+    </div>
+    <form id="shoping-cart">
+        <input type="text" name="book" id="book-in-cart" disabled>
+        <input type="number" name="quantity" min="0" step="1">
+        <input type="text" name="name">
+        <input type="text" name="address">
+        <input type="date" name="date">
+        <textarea type="text" name="comment"></textarea>
+        <input type="submit">
+    </form>
+    <script>
+        const books = document.getElementById('books');
+        const bookInCart = document.getElementById('book-in-cart');
+        const shopingCart = document.getElementById('shoping-cart');
+
+        books.addEventListener('click', (event) => {
+            if (event.target.classList.contains('add')) {
+                bookInCart.value = event.target.parentNode.querySelector('.name').textContent;
+            }
+        });
+
+        shopingCart.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            let userInfo = '';
+            userInfo += `книга: ${shopingCart.elements.book.value}\n`
+            userInfo += `кол-во: ${shopingCart.elements.quantity.value}\n`
+            userInfo += `заказчик: ${shopingCart.elements.name.value}\n`
+            userInfo += `адрес: ${shopingCart.elements.address.value}\n`
+            userInfo += `дата доставки: ${shopingCart.elements.date.value}\n`
+            userInfo += `комментарий: ${shopingCart.elements.comment.value}\n`
+
+            alert(userInfo)
+        });
+    </script>
+</body>
+
+</html>
