@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="lesson-select">
+        <select id="group">
+            <option value="-1" selected disable>выбери группу</option>
+        </select>
+        <select id="lesson">
+            <option value="-1" selected desable>выбери занятия</option>
+        </select>
+        <button id="select">select</button>
+        <div id="lesson-title-veiw" hidden>
+            <label for="lesson-title">тема урока</label>
+            <input type="text" id="lesson-title">
+            <ul id="studendts-list"></ul>
+            <button id="save">save</button>
+        </div>
+    </div>
+    <script>
+        const groups = [
+            {
+                name: 'группа 1',
+                students: [
+                    'василий',
+                    'иван',
+                    'станислав',
+                ],
+
+                lessons: [
+                    {
+                        name: 'html',
+                        attendance: [],
+                        saved: false,
+                    },
+                    {
+                        name: 'css',
+                        attendance: [],
+                        saved: false,
+                    },
+                ]
+            },
+
+            {
+                name: 'группа 2',
+                students: [
+                    'василий',
+                    'петр',
+                    'иван',
+                ],
+
+                lessons: [
+                    {
+                        name: 'js',
+                        attendance: [],
+                        saved: flase,
+                    },
+                ],
+            },
+        ];
+
+        // создаем переменные для работы 
+        const groupSelect = document.getElementById('group');
+        const lessonSelect = document.getElementById('lesson');
+        const selectButton = document.getElementById('select');
+        const lessonView = document.getElementById('select-view');
+        const lessonTitle = document.getElementById('lesson-title');
+        const studentsList = document.getElementById('students-list');
+        const saveButton = document.getElementById('save');
+
+        let targetGroup;
+        let targetLesson;
+
+        groups.forEach((group, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = group.name;
+            groupSelect.append(option);
+        });
+
+        groupSelect.addEventListener('change', () => {
+            targetGroup = groups[groupSelect.value]
+            lessonSelect.innerHTML = '';
+            setLessonOptions(targetGroup.lessons)
+        });
+
+        function setLessonOptions(lesson) {
+            const mock = document.createElement('option');
+            mock.value = '-1';
+            mock.textContent = 'выбери занятия';
+            mock.selected = true;
+            mock.disabled = true;
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>
