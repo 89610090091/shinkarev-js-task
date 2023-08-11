@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
@@ -10,16 +11,16 @@
 <body>
     <div class="lesson-select">
         <select id="group">
-            <option value="-1" selected disable>выбери группу</option>
+            <option value="-1" selected disabled>выбери группу</option>
         </select>
         <select id="lesson">
-            <option value="-1" selected desable>выбери занятия</option>
+            <option value="-1" selected disabled>выбери занятие</option>
         </select>
         <button id="select">select</button>
-        <div id="lesson-title-veiw" hidden>
+        <div id="lesson-view" hidden>
             <label for="lesson-title">тема урока</label>
             <input type="text" id="lesson-title">
-            <ul id="studendts-list"></ul>
+            <ul id="students-list"></ul>
             <button id="save">save</button>
         </div>
     </div>
@@ -28,11 +29,10 @@
             {
                 name: 'группа 1',
                 students: [
-                    'василий',
-                    'иван',
-                    'станислав',
+                    'Василий',
+                    'Пётр',
+                    'Иван',
                 ],
-
                 lessons: [
                     {
                         name: 'html',
@@ -44,36 +44,32 @@
                         attendance: [],
                         saved: false,
                     },
-                ]
+                ],
             },
-
             {
                 name: 'группа 2',
                 students: [
-                    'василий',
-                    'петр',
-                    'иван',
+                    'Василий',
+                    'Пётр',
+                    'Иван',
                 ],
-
                 lessons: [
                     {
                         name: 'js',
                         attendance: [],
-                        saved: flase,
+                        saved: false,
                     },
                 ],
             },
         ];
 
-        // создаем переменные для работы 
         const groupSelect = document.getElementById('group');
         const lessonSelect = document.getElementById('lesson');
         const selectButton = document.getElementById('select');
-        const lessonView = document.getElementById('select-view');
+        const lessonView = document.getElementById('lesson-view');
         const lessonTitle = document.getElementById('lesson-title');
         const studentsList = document.getElementById('students-list');
         const saveButton = document.getElementById('save');
-
         let targetGroup;
         let targetLesson;
 
@@ -85,22 +81,91 @@
         });
 
         groupSelect.addEventListener('change', () => {
-            targetGroup = groups[groupSelect.value]
+            targetGroup = groups[groupSelect.value];
             lessonSelect.innerHTML = '';
             setLessonOptions(targetGroup.lessons)
         });
 
-        function setLessonOptions(lesson) {
+        function setLessonOptions(lessons) {
             const mock = document.createElement('option');
             mock.value = '-1';
-            mock.textContent = 'выбери занятия';
+            mock.textContent = 'выбери занятие';
             mock.selected = true;
             mock.disabled = true;
 
+            lessonSelect.append(mock);
+
+            lessons.forEach((lesson, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = lesson.name;
+                lessonSelect.append(option);
+            });
         }
 
+        selectButton.addEventListener('click', () => {
+            clearView();
+            lessonView.hidden = false;
 
+            targetLesson = targetGroup.lessons[lessonSelect.value];
 
+            lessonTitle.value = targetLesson.name;
+            if (targetLesson.saved) {
+                lessonTitle.disabled = true;
+                targetGroup.students.forEach((student) => {
+                    const listItem = document.createElement('li');
+                    studentsList.append(listItem);
+
+                    const studentName = document.createElement('span');
+                    const attendance = document.createElement('input');
+                    listItem.append(studentName, attendance);
+
+                    attendance.disabled = true;
+                    studentName.textContent = student;
+                    attendance.type = 'checkbox';
+                    if (targetLesson.attendance.includes(student)) {
+                        attendance.checked = true;
+                    }
+                });
+            } else {
+                targetGroup.students.forEach((student) => {
+                    addStudetnToList(student);
+                });
+            }
+        });
+
+        saveButton.addEventListener('click', () => {
+            const checkboxes = Array.from(studentsList.querySelectorAll('input'));
+            checkboxes.forEach((checkbox) => {
+                checkbox.disabled = true;
+                if (checkbox.checked) {
+                    const studentName = checkbox.previousElementSibling.textContent;
+                    targetLesson.attendance.push(studentName);
+                }
+            });
+
+            targetLesson.name = lessonTitle.value;
+            lessonTitle.disabled = true;
+            targetLesson.saved = true;
+        });
+
+        function addStudetnToList(name) {
+            const listItem = document.createElement('li');
+            studentsList.append(listItem);
+
+            const studentName = document.createElement('span');
+            const attendance = document.createElement('input');
+            listItem.append(studentName, attendance);
+
+            studentName.textContent = name;
+            attendance.type = 'checkbox';
+        }
+
+        function clearView() {
+            lessonTitle.value = '';
+            lessonTitle.disabled = false;
+            studentsList.innerHTML = '';
+        }
     </script>
 </body>
 
