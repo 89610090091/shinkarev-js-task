@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="myForm">
+        <input type="text" name="name">
+        <input type="text" name="phone">
+        <input type="text" name="email">
+        <input type="submit">
+    </form>
+    <script>
+        const myForm = document.getElementById('myForm');
+        myForm.addEventListener('submit', (event) => {
+            let valid = true;
+
+            const nameRegex = /^[A-Za-zА-Яа-яЁё]+$/;
+            if (!nameRegex.test(event.target.elements.name.value)) {
+                valid = false;
+            }
+
+            const phoneRegex = /^\+{0,1}(7|8)\d{10}$/;
+            if (!phoneRegex.test(event.target.elements.phone.value)) {
+                valid = false;
+            }
+
+            const emailRegex = /.+@[A-Za-z]+\.[A-Za-z]+$/;
+            if (!emailRegex.test(event.target.elements.email.value)) {
+                valid = false;
+            }
+        })
+    </script>
+</body>
+
+</html>
