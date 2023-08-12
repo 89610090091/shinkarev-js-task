@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="text">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non illo accusamus perferendis vitae aliquam dolorem
+        doloribus tenetur assumenda ducimus delectus, corporis et alias natus labore ad, recusandae, placeat quibusdam
+        nemo?
+    </div>
+    <textarea class="textEditor" cols="30" rows="10" hidden></textarea>
+    <script>
+        const textView = document.querySelector('.text')
+        const textEditor = document.querySelector('.textEditor')
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'e' && event.ctrlKey) {
+                event.preventDefault();
+                document.addEventListener('keydown', save)
+
+                textView.hidden = true;
+                textEditor.hidden = false;
+                textEditor.value = textView.textContent.trim();
+            }
+        });
+
+        function save(event) {
+            if (event.key === 's' && event.ctrlKey) {
+                event.preventDefault();
+
+                textView.hidden = false;
+                textEditor.hidden = true;
+                textView.textContent = textEditor.value.trim();
+
+                document.removeEventListener('keydown', save)
+            }
+        }
+        // document.addEventListener('keyup', (event) => {
+        //     if (event.key === 'Control') {
+        //         console.log('я отпустил контрол');
+        //     }
+        // });
+    </script>
+</body>
+
+</html>
