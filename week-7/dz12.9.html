@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            margin-left: 50px;
+            width: 300px;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 7px 13px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <td id="name-header">name</td>
+            <td id="age-header">age</td>
+        </thead>
+        <tbody id="users-view">
+
+        </tbody>
+    </table>
+    <script>
+        let users = [
+            {
+                name: 'a',
+                age: '3',
+            },
+            {
+                name: 'b',
+                age: '2',
+            },
+            {
+                name: 'c',
+                age: '1',
+            },
+        ];
+
+        renderUsers();
+        const nameHeader = document.getElementById('name-header');
+        const ageHeader = document.getElementById('age-header');
+
+        nameHeader.addEventListener('click', () => {
+            users.sort(compareUsersByName);
+            renderUsers();
+        });
+
+        ageHeader.addEventListener('click', () => {
+            users.sort(compareUsersByAge);
+            renderUsers();
+        });
+
+
+        function compareUsersByName(user1, user2) {
+            if (user1.name > user2.name) {
+                return 1;
+            } else if (user1.name < user2.name) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+
+        function compareUsersByAge(user1, user2) {
+            if (+user1.age > +user2.age) {
+                return 1;
+            } else if (+user1.age < +user2.age) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+
+        function renderUsers() {
+            const tableBody = document.getElementById('users-view');
+            tableBody.innerHTML = '';
+            users.forEach((user) => {
+                addUserToTable(user.name, user.age);
+            });
+        }
+
+        function addUserToTable(name, age) {
+            const tableBody = document.getElementById('users-view');
+            const row = document.createElement('tr');
+            const nameCell = document.createElement('td');
+            const ageCell = document.createElement('td');
+            nameCell.textContent = name;
+            ageCell.textContent = age;
+            row.append(nameCell);
+            row.append(ageCell);
+            tableBody.append(row);
+        }
+
+    </script>
+</body>
+
+</html>
