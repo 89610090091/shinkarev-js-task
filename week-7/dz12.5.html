@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            margin-top: 30px;
+            margin-left: 50px;
+            width: 300px;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 7px 13px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="month">
+    <input type="text" id="year">
+    <button id="generate">generate</button>
+    <table>
+        <tbody id="calendar">
+            <tr>
+                <td>пн</td>
+                <td>вт</td>
+                <td>ср</td>
+                <td>чт</td>
+                <td>пт</td>
+                <td>сб</td>
+                <td>вс</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        const today = new Date();
+        renderCalendar(today.getMonth(), today.getFullYear());
+
+        document.getElementById('generate').addEventListener('click', () => {
+            const month = document.getElementById('month').value;
+            const year = document.getElementById('year').value;
+
+            renderCalendar(month, year);
+        });
+
+
+        function renderCalendar(month, year) {
+
+            const targetDate = new Date();
+            targetDate.setMonth(month);
+            targetDate.setFullYear(year);
+            targetDate.setDate(1);
+            const rows = Array.from(document.getElementById('calendar').children);
+            clearRows(rows);
+
+
+            currentMonth = targetDate.getMonth();
+            let week = 1;
+            while (currentMonth === targetDate.getMonth()) {
+                // положить дни недели в таблицу
+                let weekDay = targetDate.getDay() - 1;
+                if (weekDay === -1) {
+                    weekDay = 6;
+                }
+
+                const rowCells = Array.from(rows[week].children);
+
+                rowCells[weekDay].textContent = targetDate.getDate();
+
+                if (weekDay === 6) {
+                    week++;
+                }
+
+                targetDate.setDate(targetDate.getDate() + 1);
+            }
+        }
+
+        function clearRows(rows) {
+            rows.forEach((row, index) => {
+                if (index !== 0) {
+                    const rowCells = Array.from(row.children);
+                    rowCells.forEach((cell) => cell.innerHTML = '');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
