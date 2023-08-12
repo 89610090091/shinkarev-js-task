@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+        }
+
+        .addColorForm {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        input,
+        select {
+            display: block;
+        }
+
+        .color {
+            width: 150px;
+            height: 100px;
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .color__info {
+            background-color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+        }
+
+        .result {
+            margin-top: 25px;
+            display: flex;
+            flex-flow: row wrap;
+            gap: 20px;
+            max-width: 100%;
+        }
+
+        input.not-valid {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="addColorForm">
+            <div>
+                <label for="colorName">colorName</label>
+                <input type="text" name="colorName" id="colorName">
+            </div>
+            <div>
+                <label for="colorType">colorType</label>
+                <select name="colorType" id="colorType">
+                    <option value="rgb">RGB</option>
+                    <option value="rgba">RGBA</option>
+                    <option value="hex">HEX</option>
+                </select>
+            </div>
+            <div>
+                <label for="colorCode">colorCode</label>
+                <input type="text" name="colorCode" id="colorCode">
+            </div>
+            <input type="submit" value="add">
+        </form>
+        <div class="result">
+            <div class="color" style="background-color: rgb(255, 0, 0);">
+                <div class="color__info">
+                    <span class="color__name">Red</span>
+                    <span class="color__type">RGB</span>
+                    <span class="color__code">255,0,0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const colors = [
+            {
+                name: 'red',
+                type: 'rgb',
+                code: '255,0,0',
+            },
+            {
+                name: 'green',
+                type: 'rgb',
+                code: '0,255,0',
+            },
+            {
+                name: 'blue',
+                type: 'rgb',
+                code: '0,0,255',
+            },
+
+        ]
+        const addColorForm = document.querySelector('.addColorForm');
+        const result = document.querySelector('.result');
+
+        renderColors();
+
+
+        addColorForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const isValid = validateAddColorForm();
+            if (isValid) {
+                const name = addColorForm.elements.colorName.value;
+                const type = addColorForm.elements.colorType.value;
+                const code = addColorForm.elements.colorCode.value;
+
+                const isAdded = !!colors.find((color) => {
+                    return color.name.toLowerCase() === name.toLowerCase()
+                });
+
+                if (!isAdded) {
+                    colors.push({
+                        name,
+                        type,
+                        code,
+                    });
+
+                    renderColors();
+                }
+            }
+
+        });
+
+        function renderColors() {
+            result.innerHTML = '';
+            colors.forEach((color) => addColor(color));
+        }
+
+        function addColor(color) {
+            const colorBody = document.createElement('div');
+            colorBody.classList.add('color');
+            switch (color.type) {
+                case 'rgb':
+                    colorBody.style.backgroundColor = `rgb(${color.code})`;
+                    break;
+                case 'rgba':
+                    colorBody.style.backgroundColor = `rgba(${color.code})`;
+                    break;
+                case 'hex':
+                    colorBody.style.backgroundColor = color.code;
+                    break;
+            }
+
+            const info = document.createElement('div');
+            info.classList.add('color__info');
+            const colorName = document.createElement('span');
+            colorName.classList.add('color__name');
+            colorName.textContent = color.name;
+            const colorType = document.createElement('span');
+            colorType.classList.add('color__type');
+            colorType.textContent = color.type;
+            const colorCode = document.createElement('span');
+            colorCode.classList.add('color__code');
+            colorCode.textContent = color.code;
+
+            result.append(colorBody);
+            colorBody.append(info);
+            info.append(colorName, colorType, colorCode);
+        }
+
+        function validateAddColorForm() {
+            let isValid = true;
+            const nameInput = addColorForm.elements.colorName;
+            const typeInput = addColorForm.elements.colorType;
+            const codeInput = addColorForm.elements.colorCode;
+            nameInput.classList.remove('not-valid')
+            codeInput.classList.remove('not-valid')
+            const colorNameRegex = /[A-Za-z]/;
+            switch (typeInput.value) {
+                case 'rgb':
+                    const colorCodeRegex = /^(25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?|[0-9]),(25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?|[0-9]),(25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?|[0-9])$/;
+                    break;
+                case 'rgba':
+                    const colorCodeRegex = /^(25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?|[0-9]),(25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?|[0-9]),(25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?|[0-9]),([0-1]{1}|0\.\d+)$/;
+                    break;
+                case 'hex':
+                    const colorCodeRegex = /^#(\d|[AaBbCcDdEeFf]){3,6}$/;
+                    break;
+            }
+
+
+            if (!colorNameRegex.test(nameInput.value)) {
+                nameInput.classList.add('not-valid')
+                isValid = false;
+            }
+
+            if (!colorCodeRegex.test(codeInput.value)) {
+                codeInput.classList.add('not-valid')
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+
+</html>
