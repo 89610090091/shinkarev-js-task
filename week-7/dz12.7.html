@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        li.active {
+            background-color: chocolate;
+        }
+    </style>
+</head>
+
+<body>
+    <ol id="list">
+        <li class="list_item">Lorem <span style="color: crimson;">dolor</span> sit amet consectetur adipisicing elit.
+            Distinctio, minima aliquid a porro dolor quis eligendi, est ex, deleniti laborum voluptatum voluptates
+            aperiam soluta culpa dolores ad reprehenderit recusandae repellendus?</li>
+        <li class="list_item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, minima aliquid a
+            porro dolor quis eligendi, est ex, deleniti laborum voluptatum voluptates aperiam soluta culpa dolores ad
+            reprehenderit recusandae repellendus?</li>
+        <li class="list_item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, minima aliquid a
+            porro dolor quis eligendi, est ex, deleniti laborum voluptatum voluptates aperiam soluta culpa dolores ad
+            reprehenderit recusandae repellendus?</li>
+        <li class="list_item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, minima aliquid a
+            porro dolor quis eligendi, est ex, deleniti laborum voluptatum voluptates aperiam soluta culpa dolores ad
+            reprehenderit recusandae repellendus?</li>
+        <li class="list_item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, minima aliquid a
+            porro dolor quis eligendi, est ex, deleniti laborum voluptatum voluptates aperiam soluta culpa dolores ad
+            reprehenderit recusandae repellendus?</li>
+    </ol>
+    <script>
+        let previousItem;
+        const list = document.getElementById('list');
+        list.addEventListener('click', function (event) {
+            if (!event.ctrlKey) {
+                Array.from(document.querySelectorAll('.list_item')).forEach((item) => {
+                    item.classList.remove('active');
+                });
+            }
+            const item = event.target.closest('.list_item');
+            if (item !== null) {
+
+                if (event.shiftKey) {
+                    const previousItemIndex = Array.from(list.children).indexOf(previousItem);
+                    const currentItemIndex = Array.from(list.children).indexOf(item);
+
+                    if (currentItemIndex < previousItemIndex) {
+                        for (let index = previousItemIndex; index >= currentItemIndex; index--) {
+                            list.children[index].classList.add('active');
+                        }
+                    } else {
+                        for (let index = previousItemIndex; index <= currentItemIndex; index++) {
+                            list.children[index].classList.add('active');
+                        }
+                    }
+
+                } else {
+                    item.classList.add('active');
+                    previousItem = item;
+                }
+            }
+        });
+    </script>
+</body>
+
+
+<!-- 2 текущий -->
+<!-- 4 предыдущий -->
+
+</html>
