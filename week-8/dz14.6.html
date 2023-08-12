@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body,
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    #search {
+        padding: 20px;
+    }
+
+    #result {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    #wagons {
+        width: 100%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(14, 1fr);
+        padding: 20px;
+        background-color: antiquewhite;
+        margin-bottom: 20px;
+    }
+
+    #buying {
+        text-align: center;
+    }
+
+    table {
+        border-collapse: collapse;
+        margin: 10px;
+        width: 80%;
+        margin: auto;
+    }
+
+    th,
+    td,
+    tr {
+        border: solid black 2px;
+        padding: 10px;
+    }
+
+    #my_ticket {
+        width: 50%;
+        background-color: blanchedalmond;
+        margin: 0 auto;
+    }
+
+    #my_ticket>span {
+        font-size: 32px;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <div id="search">
+        <span>Direction:</span>
+        <select name="direction" id="direction">
+            <option value="" selected="true" disabled="disabled"> Please choose your destiny :) </option>
+        </select>
+        <span>Date:</span>
+        <input type="date" id="date">
+        <button id="search_button">Search</button>
+    </div>
+
+    <div id="result" hidden>
+        <div id="wagons">
+
+        </div>
+        <form id="buying">
+            Total price: <span id="total-price"></span>
+            <input type="submit" value="buy" id="buy_button">
+        </form>
+    </div>
+
+    <div id="my_ticket" hidden>
+        <span>My tickets:</span>
+        <table>
+            <thead>
+                <th>Direction</th>
+                <th>Date</th>
+                <th>Seat</th>
+            </thead>
+            <tbody id="table_body">
+
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const COST = 100;
+        const SEETS_NUMBER = 30;
+        const destination = [
+            'Odessa - Lviv',
+            'Ryazan - Moscow',
+            'Moscow - Neverland',
+            'To Igdrassil',
+            'For the horde'
+        ]
+        let totalPrice = 0;
+        const wagons = document.getElementById('wagons');
+        const search = document.getElementById('search');
+        const direction = document.getElementById('direction');
+        const searchButton = document.getElementById('search_button');
+        const result = document.getElementById('result');
+        const seats = document.getElementById('seats');
+        const buyButton = document.getElementById('buy_button');
+        const myTicket = document.getElementById('my_ticket');
+        const totalPriceView = document.getElementById('total-price');
+        let currentDirection = direction.options.selectedIndex;
+
+        destination.forEach(city => {
+            const chooseDirection = document.createElement('option');
+            direction.append(chooseDirection);
+            chooseDirection.textContent = city;
+            // chooseDirection.value = city;
+        });
+
+        searchButton.addEventListener('click', () => {
+            if (direction.options.selectedIndex !== 0) {
+                wagons.innerHTML = '';
+                result.hidden = false;
+
+                for (let i = 0; i <= SEETS_NUMBER; i++) {
+                    const checkSeats = document.createElement('input');
+                    const numberOfSeats = document.createElement('span');
+                    const seatsDiv = document.createElement('div');
+                    wagons.append(seatsDiv);
+                    numberOfSeats.textContent = i + 1;
+                    checkSeats.type = 'checkbox';
+                    checkSeats.value = i + 1;
+                    seatsDiv.append(checkSeats);
+                    seatsDiv.append(numberOfSeats);
+                }
+            } else {
+                alert('Please choose your destiny :)')
+            }
+
+        });
+
+        buyButton.addEventListener('click', (event) => {  // ПОЧЕМУ не срабатывает submit ??? submit - событие формы а не INPUT'а
+            event.preventDefault();
+            myTicket.hidden = false;
+
+            const tbody = document.getElementById('table_body');
+            let res = [];
+            let arrayOfCheckedSeats = Array.from(result.firstElementChild.getElementsByTagName('input'));
+            for (let i = 0; i < arrayOfCheckedSeats.length; i++) {
+                // console.log(`${arrayOfCheckedSeats[i].value}        ${arrayOfCheckedSeats[i].checked}`);
+                if (arrayOfCheckedSeats[i].checked && arrayOfCheckedSeats[i].disabled !== true) {
+                    arrayOfCheckedSeats[i].disabled = true;
+                    res.push(arrayOfCheckedSeats[i]);
+                }
+            }
+
+            for (i = 0; i < res.length; i++) {
+                let tr = document.createElement('tr');
+                let td1 = document.createElement('td');
+                let td2 = document.createElement('td');
+                let td3 = document.createElement('td');
+                tbody.append(tr);
+                tr.append(td1);
+                td1.textContent = destination[direction.options.selectedIndex - 1];
+                tr.append(td2);
+                td2.textContent = document.getElementById('date').value;
+                tr.append(td3);
+                td3.textContent = res[i].value;
+            }
+        });
+
+        wagons.addEventListener('change', (event) => {
+            totalPrice = 0;
+            let seets = Array.from(result.firstElementChild.getElementsByTagName('input'));
+
+            seets.forEach((seet) => {
+                if (seet.checked) {
+                    totalPrice += COST;
+                }
+            });
+
+            totalPriceView.textContent = totalPrice;
+        });
+    </script>
+</body>
+
+</html>
